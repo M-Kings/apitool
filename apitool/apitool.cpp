@@ -23,12 +23,12 @@ bool EnableDebugPrivilege()
 	TOKEN_PRIVILEGES tkp;
 
 	if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken)) {
-		//cout << "»ñÈ¡ÁîÅÆ¾ä±úÊ§°Ü!" << endl;
+		//cout << "èŽ·å–ä»¤ç‰Œå¥æŸ„å¤±è´¥!" << endl;
 		return false;
 	}
 
 	if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &sedebugnameValue)) {
-		//cout << "»ñÈ¡LuidÊ§°Ü" << endl;
+		//cout << "èŽ·å–Luidå¤±è´¥" << endl;
 		__try {
 			if (hToken) {
 				CloseHandle(hToken);
@@ -42,7 +42,7 @@ bool EnableDebugPrivilege()
 	tkp.Privileges[0].Luid = sedebugnameValue;
 	tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 	if (!AdjustTokenPrivileges(hToken, FALSE, &tkp, sizeof(tkp), NULL, NULL)) {
-		//cout << "ÐÞ¸ÄÌØÈ¨²»ÍêÈ«»òÊ§°Ü!" << endl;
+		//cout << "ä¿®æ”¹ç‰¹æƒä¸å®Œå…¨æˆ–å¤±è´¥!" << endl;
 		__try {
 			if (hToken) {
 				CloseHandle(hToken);
@@ -53,7 +53,7 @@ bool EnableDebugPrivilege()
 	}
 	else
 	{
-		//cout << "ÐÞ¸ÄÎªsystem³É¹¦!" << endl;
+		//cout << "ä¿®æ”¹ä¸ºsystemæˆåŠŸ!" << endl;
 		return true;
 	}
 
@@ -238,7 +238,7 @@ void printHelp() {
 
 	fwprintf(stderr, L"\
 Name:\n\
-  WinApi Tools by Mking\n\n\
+  WinApi Tools \n\n\
 \
 Usage:\n\
   %ls [options] [arguments...]\n\n\
